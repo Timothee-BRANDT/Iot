@@ -63,3 +63,7 @@ K3S -> One control plane, n nodes
 
 - https://helm.sh/docs/intro/using_helm/
 
+- https://docs.k3s.io/architecture
+
+- https://docs.k3s.io/cluster-access
+
