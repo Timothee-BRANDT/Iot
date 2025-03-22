@@ -43,6 +43,12 @@ K3S -> One control plane, n nodes
 
 - https://medium.com/@dharsannanantharaman/create-a-high-availabilty-lightweight-kubernetes-k3s-cluster-using-vagrant-822a1e025855
 
+- https://docs.k3s.io/architecture
+
+- https://docs.k3s.io/cluster-access
+
+- https://kubernetes.io/docs/reference/networking/ports-and-protocols/
+
 ---
 
 # Part 2
@@ -68,10 +74,4 @@ K3S -> One control plane, n nodes
 - https://www.sokube.io/blog/gitops-on-a-laptop-with-k3d-and-argocd
 
 - https://helm.sh/docs/intro/using_helm/
-
-- https://docs.k3s.io/architecture
-
-- https://docs.k3s.io/cluster-access
-
-- https://kubernetes.io/docs/reference/networking/ports-and-protocols/
 
