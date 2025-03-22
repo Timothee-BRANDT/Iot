@@ -1,6 +1,11 @@
-# Iot
+# Inception of Things
 
+[Kubernetes](https://kubernetes.io/) aka k8s and using [k3s](https://k3s.io/) with [k3d](https://k3d.io/), it's a dev ops project.
 AUTO-SCALE : Need more containers ? Just deploy more machine
+
+---
+
+# Part 1
 
 HIGH-AVAILABILITY : One machine is down ? Instant replace with a new one
 
@@ -31,3 +36,28 @@ Any type of other kubernetes distribution would need at least double of that res
 
 K8S -> Every node got his own control plane
 K3S -> One control plane, n nodes
+
+---
+
+# Part 2
+
+---
+
+# Part 3 
+
+## Setup
+
+- Install [k3d](https://k3d.io/stable/#releases) which is a wrapper to run k3s in docker and k3s is a lightweight k8s runtime. Basically test Kubernetes stuff on your laptop without spinning up a nuclear reactor.
+
+- Install vscode extension [vscode-k3d](https://github.com/inercia/vscode-k3d/) to make managing everything easier.
+
+## Resources
+
+- https://kubernetes.io/docs/concepts/overview/components/
+
+- https://www.sokube.io/blog/k3s-k3d-k8s-a-new-perfect-match-for-dev-and-test
+
+- https://www.sokube.io/blog/gitops-on-a-laptop-with-k3d-and-argocd
+
+- https://helm.sh/docs/intro/using_helm/
+
