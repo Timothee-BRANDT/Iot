@@ -37,6 +37,12 @@ Any type of other kubernetes distribution would need at least double of that res
 K8S -> Every node got his own control plane
 K3S -> One control plane, n nodes
 
+## Resources
+
+- https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-22.04
+
+- https://medium.com/@dharsannanantharaman/create-a-high-availabilty-lightweight-kubernetes-k3s-cluster-using-vagrant-822a1e025855
+
 ---
 
 # Part 2
@@ -66,4 +72,6 @@ K3S -> One control plane, n nodes
 - https://docs.k3s.io/architecture
 
 - https://docs.k3s.io/cluster-access
+
+- https://kubernetes.io/docs/reference/networking/ports-and-protocols/
 
