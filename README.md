@@ -45,6 +45,8 @@ K3S -> One control plane, n nodes
 
 # Part 3 
 
+> :warning: **This is something important**
+
 ## Setup
 
 - Install [k3d](https://k3d.io/stable/#releases) which is a wrapper to run k3s in docker and k3s is a lightweight k8s runtime. Basically test Kubernetes stuff on your laptop without spinning up a nuclear reactor.
