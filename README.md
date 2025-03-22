@@ -37,6 +37,10 @@ Any type of other kubernetes distribution would need at least double of that res
 K8S -> Every node got his own control plane
 K3S -> One control plane, n nodes
 
+How to check K3s is running ? 
+sudo systemctl status k3s (server node)
+sudo systemctl status k3s-agent (worker node)
+
 ## Resources
 
 - https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-22.04
