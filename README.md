@@ -1,11 +1,10 @@
 # Inception of Things
 
 [Kubernetes](https://kubernetes.io/) aka k8s and using [k3s](https://k3s.io/) with [k3d](https://k3d.io/), it's a dev ops project.
-AUTO-SCALE : Need more containers ? Just deploy more machine
-
----
 
 # Part 1
+
+AUTO-SCALE : Need more containers ? Just deploy more machine
 
 HIGH-AVAILABILITY : One machine is down ? Instant replace with a new one
 
