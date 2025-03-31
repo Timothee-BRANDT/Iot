@@ -74,7 +74,22 @@ sudo systemctl status k3s-agent (worker node)
 
 # Part 3 
 
-> :warning: **This is something important**
+## Usefull commands
+
+```bash
+# configs
+kubectl config view
+
+kubectl apply  -f file.yaml -n namespace
+
+kubectl delete -f file.yaml -n namespace
+
+kubectl get namespaces
+
+k3d cluster delte somename
+
+argocd app [list|delete|..etc]
+```
 
 ## Setup
 
