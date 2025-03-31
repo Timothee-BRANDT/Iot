@@ -2,6 +2,19 @@
 
 [Kubernetes](https://kubernetes.io/) aka k8s and using [k3s](https://k3s.io/) with [k3d](https://k3d.io/), it's a dev ops project.
 
+## VM quickstart
+
+> :warning: `ctrl` + `alt` to relase the mouse/keyboard from the vm
+
+On the school computers create a vm with Virtual Machine Manager. You need to downlaod the ubuntu LTS to goinfre: 
+
+```bash
+cd ~/goinfre && wget https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-desktop-amd64.iso
+```
+
+Launch VMM, create a new volume on groinfre (goinfre is the local disc, the vm will be more responsive), 20 gigs is fine. Then create a virtual machine using this new volume and the downloaded iso. Follow ubuntu instrution to complete installation.
+
+
 # Part 1
 
 AUTO-SCALE : Need more containers ? Just deploy more machine
@@ -41,6 +54,7 @@ sudo systemctl status k3s (server node)
 sudo systemctl status k3s-agent (worker node)
 
 ## Resources
+
 
 - https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-22.04
 
