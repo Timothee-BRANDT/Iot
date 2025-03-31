@@ -28,7 +28,7 @@ if confirm "CREATE ARGO CD"; then
     sleep 30
     echo  "applying loadbalancer patch"
     kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
-    echo "...sleeping for 10 seconds"
+    echo "...sleeping for 15 seconds"
     sleep 15
 fi
 
