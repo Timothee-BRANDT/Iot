@@ -16,7 +16,7 @@ confirm() {
 
 # TODO: add source
 if confirm "SETTING UP K3D cluster"; then
-    k3d cluster create iot -p 8080:80@loadbalancer --agents 2 --k3s-arg "--disable=traefik@server:0"
+    k3d cluster create iot -p 8080:80@loadbalancer -p 8888:8888@loadbalancer --agents 2 --k3s-arg "--disable=traefik@server:0"
 fi
 
 
@@ -51,8 +51,13 @@ fi
 
 if confirm "SYNC APP"; then
     argocd app sync wil
+    argocd app set wil --sync-policy automated --self-heal
 fi
 
+
+# if confirm "PORTFORWARD will app"; then
+#    kubectl port-forward deployments/wil-deployment 8888:8888 -n dev
+# fi
 
 # launch argo cd port forward
 
