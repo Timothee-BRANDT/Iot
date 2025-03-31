@@ -29,7 +29,7 @@ if confirm "CREATE ARGO CD"; then
     echo  "applying loadbalancer patch"
     kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
     echo "...sleeping for 10 seconds"
-    sleep 10
+    sleep 15
 fi
 
 if confirm "GET PASSWORD & LOGIN"; then
@@ -46,7 +46,7 @@ if confirm "CREATE APP"; then
     #kubectl config set-context --current --namespace=argocd
     argocd app create wil --repo https://github.com/znichola/tbrandt.git --path manifest --dest-server https://kubernetes.default.svc --dest-namespace dev
     sleep 5
-    arogcd app get wil
+    argocd app get wil
 fi
 
 if confirm "SYNC APP"; then
@@ -54,15 +54,4 @@ if confirm "SYNC APP"; then
     argocd app set wil --sync-policy automated --self-heal
 fi
 
-
-# if confirm "PORTFORWARD will app"; then
-#    kubectl port-forward deployments/wil-deployment 8888:8888 -n dev
-# fi
-
-# launch argo cd port forward
-
-# get argocd password
-
-# connect argocd commandline
-
-#
+echo  "ALL DONE"
