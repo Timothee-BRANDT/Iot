@@ -1,17 +1,29 @@
 #!/bin/bash
 
+confirm() {
+    read -p "Continue with $1? y/Y  " choice
+    case "$choice" in
+        y|Y)
+            echo "Running..."
+            return 0
+            ;;
+        *)
+            echo "Skipping..."
+            return 1
+            ;;
+    esac
+}
+
 # TODO: add source
-echo "SETTING UP K3D cluster"
-k3d cluster create iot -p 8080:80@loadbalancer --agents 2
+if confirm "SETTING UP K3D cluster"; then
+    k3d cluster create iot -p 8080:80@loadbalancer --agents 2
+fi
 
-echo "MAKE ARGO NAMESPACE" 
-kubectl create namespace argocd
+if confirm "CREATE ARGO CD"; then
+    kubectl create namespace argocd
+    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+fi
 
-echo "APPLY ARGO CD CONFIG"
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-
-
-# after
-
-echo "MAKE DEV NAMESAPCE"
-kubectl create namespace dev
+if confirm "MAKE DEV NAMESAPCE"; then
+    kubectl create namespace dev
+fi
