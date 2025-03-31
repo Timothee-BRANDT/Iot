@@ -1,10 +1,10 @@
 #!/bin/bash
 
 confirm() {
+    echo ""
     read -p "Continue with $1? y/Y  " choice
     case "$choice" in
         y|Y)
-            echo "Running..."
             return 0
             ;;
         *)
@@ -14,6 +14,11 @@ confirm() {
     esac
 }
 
+if confirm "INSTALL VIM & CONFIG"
+    sudo apt install vim -y
+    wget -qO ~/.vimrc https://github.com/znichola/my-dotfiles/raw/refs/heads/main/.vimrc
+fi
+
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
 if confirm "INSTALL docker"; then
     wget -qO get-docker.sh https://get.docker.com
@@ -21,9 +26,11 @@ if confirm "INSTALL docker"; then
 
 # https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
     echo "MANAGE DOCKER AS NON ROOT USER"
-    sudo groupadd docker
+    sudo groupadd -f docker
     sudo usermod -aG docker $USER
     newgrp docker
+    echo "... restart to premenently apply docker group to user"
+    echo "... else for each new session run < newgrp docker >"
 fi
 
 # https://k3d.io/stable/#install-current-latest-release

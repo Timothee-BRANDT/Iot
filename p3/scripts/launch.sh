@@ -1,10 +1,10 @@
 #!/bin/bash
 
 confirm() {
+    echo ""
     read -p "Continue with $1? y/Y  " choice
     case "$choice" in
         y|Y)
-            echo "Running..."
             return 0
             ;;
         *)
@@ -27,3 +27,12 @@ fi
 if confirm "MAKE DEV NAMESAPCE"; then
     kubectl create namespace dev
 fi
+
+
+# launch argo cd port forward
+
+# get argocd password
+
+# connect argocd commandline
+
+# 

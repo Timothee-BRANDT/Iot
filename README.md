@@ -92,3 +92,6 @@ sudo systemctl status k3s-agent (worker node)
 
 - https://helm.sh/docs/intro/using_helm/
 
+- https://kubernetes.io/docs/reference/kubectl/quick-reference/#kubectl-context-and-configuration
+
+
