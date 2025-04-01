@@ -68,7 +68,147 @@ sudo systemctl status k3s-agent (worker node)
 
 ---
 
-# Part 2
+# Part 2: Kubernetes Vagrant Environment with K3s and Traefik Ingress
+
+This part of the project sets up a lightweight Kubernetes (K3s) environment using Vagrant and VirtualBox, with three containerized web applications and Ingress-based routing via Traefik.
+
+---
+
+## 🧰 Project Overview
+
+- Uses **Debian Bookworm** as the base VM
+- Installs and configures **K3s** with **Traefik Ingress**
+- Deploys **three simple web applications**
+- Configures Ingress routing using domain names: `app1.com`, `app2.com`, `app3.com`
+- Accessible via `curl` or browser using mapped hostnames
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone git@github.com:Timothee-BRANDT/Iot.git
+cd Iot/p2
+```
+
+### 2. Start the VM
+
+```bash
+vagrant up
+```
+
+This will:
+- Set up the VM with 2 CPUs and 2GB RAM
+- Assign it the IP: `192.168.56.110`
+- Provision it using `setup.sh` (K3s, Helm, Traefik, Kubernetes resources)
+
+---
+
+## 🔐 Access the VM
+
+```bash
+vagrant ssh
+```
+
+---
+
+## ✅ Post-Setup Verification
+
+### 📡 Check Network Interface
+
+```bash
+ip addr show eth1
+```
+
+The interface `eth1` exists and shows `192.168.56.110`.
+
+---
+
+### 🏷️ Check Hostname
+
+```bash
+hostname
+```
+
+---
+
+### 🧪 Verify K3s Installation
+
+```bash
+systemctl status k3s
+k3s --version
+kubectl get nodes
+kubectl get pods -A
+```
+
+---
+
+### 📌 Validate Node Info
+
+```bash
+kubectl get nodes -o wide
+```
+
+---
+
+### 🔍 Validate Application Deployments
+
+```bash
+kubectl get all
+```
+
+> The second app should have **3 replicas**.
+
+---
+
+## 🌐 Ingress Verification
+
+### 1. Check Ingress Setup
+
+```bash
+kubectl get ingress
+kubectl describe ingress hello-apps-ingress
+```
+
+**Rules** section to verify correct domain-based routing.
+
+---
+
+### 2. Test Access to Applications
+
+Use `curl` to verify the Ingress routing:
+
+```bash
+# App1
+curl -H "Host: app1.com" 192.168.56.110
+
+# App2
+curl -H "Host: app2.com" 192.168.56.110
+
+# App3
+curl -H "Host: app3.com" 192.168.56.110
+
+# Default fallback
+curl 192.168.56.110
+```
+
+---
+
+## 🧭 Services Overview
+
+```bash
+kubectl get svc -n traefik
+```
+
+---
+
+## 📝 Notes
+
+- Host entries for `app1.com`, `app2.com`, `app3.com` are added to `/etc/hosts` in the VM.
+- Traefik is installed via Helm with host networking.
+- Default Ingress route points to **app3**.
 
 ---
 
@@ -108,5 +248,3 @@ argocd app [list|delete|..etc]
 - https://helm.sh/docs/intro/using_helm/
 
 - https://kubernetes.io/docs/reference/kubectl/quick-reference/#kubectl-context-and-configuration
-
-
