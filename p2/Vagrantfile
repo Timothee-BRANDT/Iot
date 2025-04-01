@@ -1,0 +1,22 @@
+# Vagrant configuration using API version 2
+Vagrant.configure("2") do |config|
+
+  # Specify the base box to use for the VM
+  config.vm.box = "debian/bookworm64"
+
+  # Set the hostname for the virtual machine
+  config.vm.hostname = "ddupontS"
+
+  # Configure VirtualBox as the provider
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 2048    # Set VM memory to 2GB
+    vb.cpus  = 2        # Set number of CPU cores to 2
+  end
+
+  # Assign a static private IP address to the VM
+  config.vm.network "private_network", ip: "192.168.56.110"
+
+  # Run a shell script to provision the VM
+  config.vm.provision "shell", path: "setup.sh"
+
+end

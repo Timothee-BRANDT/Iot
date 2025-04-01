@@ -1,0 +1,83 @@
+# This file creates 3 Deployments in Kubernetes.
+# Each Deployment runs one or more copies (Pods) of a containerized app.
+# Deployments handle scaling, updates, and automatically restart failed Pods.
+
+# Deployment for app1:
+# - Runs 1 Pod with a simple web app.
+# - Displays the message "Hello from app1." when accessed.
+apiVersion: apps/v1                     # API version for Deployments
+kind: Deployment                        # Type of Kubernetes resource
+metadata:
+  name: app1-deployment                 # Name of the Deployment
+spec:
+  replicas: 1                           # Run 1 copy of the app
+  selector:                             # Defines which Pods this Deployment manages
+    matchLabels:
+      app: app1                         # Must match the label in the Pod template
+  template:                             # Describes how to create the Pod
+    metadata:
+      labels:
+        app: app1                       # Label used by Services to find and route traffic to this Pod
+    spec:
+      containers:
+        - name: app1                    # Name of the container
+          image: paulbouwer/hello-kubernetes:1.9  # Docker image to run
+          ports:
+            - containerPort: 8080       # Port the app listens on inside the container
+          env:
+            - name: MESSAGE
+              value: "Hello from app1." # Custom message shown in the web app
+
+---
+# Deployment for app2:
+# - Runs 3 Pods with the same web app.
+# - Each displays the message "Hello from app2." when accessed.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2-deployment
+spec:
+  replicas: 3                           # Run 3 copies of the app
+  selector:
+    matchLabels:
+      app: app2
+  template:
+    metadata:
+      labels:
+        app: app2
+    spec:
+      containers:
+        - name: app2
+          image: paulbouwer/hello-kubernetes:1.9
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MESSAGE
+              value: "Hello from app2."
+
+---
+# Deployment for app3:
+# - Runs 1 Pod similar to app1, with a different message.
+# - Displays the message "Hello from app3." when accessed.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app3-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app3
+  template:
+    metadata:
+      labels:
+        app: app3
+    spec:
+      containers:
+        - name: app3
+          image: paulbouwer/hello-kubernetes:1.9
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MESSAGE
+              value: "Hello from app3."

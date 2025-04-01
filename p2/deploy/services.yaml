@@ -1,0 +1,50 @@
+# This file defines 3 Kubernetes Services that expose applications internally within the cluster.
+# Each Service gives a stable IP/DNS name and routes network traffic to Pods based on labels.
+# Traffic received on port 80 is forwarded to port 8080 on the corresponding Pods.
+
+# Service for app1:
+# - Makes app1 accessible on port 80 inside the cluster.
+# - Routes traffic to the Pod labeled app=app1 on port 8080.
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-service                     # Name of the Service
+spec:
+  selector:
+    app: app1                            # Selects the Pod labeled app=app1 (from the Deployment)
+  ports:
+    - protocol: TCP
+      port: 80                           # Port exposed by the Service inside the cluster
+      targetPort: 8080                   # Port on the Pod where the app is listening
+
+---
+# Service for app2:
+# - Exposes app2 on port 80 inside the cluster.
+# - Routes traffic to Pods labeled app=app2 on port 8080.
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2-service
+spec:
+  selector:
+    app: app2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+# Service for app3:
+# - Exposes app3 on port 80 inside the cluster.
+# - Routes traffic to the Pod labeled app=app3 on port 8080.
+apiVersion: v1
+kind: Service
+metadata:
+  name: app3-service
+spec:
+  selector:
+    app: app3
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

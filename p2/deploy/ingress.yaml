@@ -1,0 +1,62 @@
+# This file defines a Kubernetes Ingress resource managed by Traefik.
+# The Ingress enables HTTP traffic from outside the cluster to reach internal Services using domain-based routing.
+# It acts as a reverse proxy, forwarding requests to the correct Service based on the Host header.
+
+apiVersion: networking.k8s.io/v1         # API version for Ingress resources
+kind: Ingress                            # Declares an Ingress resource
+metadata:
+  name: hello-apps-ingress               # Name of the Ingress object
+spec:
+  ingressClassName: "traefik"            # Tells Kubernetes to use Traefik as the Ingress Controller (which is the default in K3s)
+  rules:                                 # List of routing rules based on hostnames and paths
+
+    # Rule for app1:
+    # - Routes HTTP traffic with Host "app1.com" to app1-service on port 80.
+    - host: app1.com                     # Matches requests with Host header "app1.com"
+      http:
+        paths:
+          - path: /                      # Matches all paths under "/"
+            pathType: Prefix             # Uses prefix-based path matching
+            backend:
+              service:
+                name: app1-service       # Target Service name
+                port:
+                  number: 80             # Port exposed by the Service
+
+    # Rule for app2:
+    # - Routes HTTP traffic with Host "app2.com" to app2-service on port 80.
+    - host: app2.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app2-service
+                port:
+                  number: 80
+
+    # Rule for app3:
+    # - Routes HTTP traffic with Host "app3.com" to app3-service on port 80.
+    - host: app3.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app3-service
+                port:
+                  number: 80
+
+    # Default fallback rule (no host specified):
+    # - Routes any unmatched requests to app3-service by default.
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app3-service
+                port:
+                  number: 80
