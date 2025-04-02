@@ -112,7 +112,7 @@ update_hosts() {
 ###############################################################################
 
 install_curl    # Update package index and install curl
-setup_swap      # Create swap file to prevent K3s from failing on low-memory systems
+# setup_swap      # Create swap file to prevent K3s from failing on low-memory systems
 install_k3s     # Install k3s with custom options
 config_kube     # Set permissions and export kubeconfig
 wait_k8s        # Wait for Kubernetes API to become ready

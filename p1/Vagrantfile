@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
-  # https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-22.04
-  config.vm.box = "bento/ubuntu-22.04"
+  # https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-24.04
+  config.vm.box = "bento/ubuntu-24.04"
 
   # server
   config.vm.define "tbrandtS" do |server|
