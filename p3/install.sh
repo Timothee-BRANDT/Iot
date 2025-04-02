@@ -14,15 +14,10 @@ confirm() {
     esac
 }
 
-if confirm "INSTALL VIM & CONFIG"; then
-    sudo apt install vim -y
-    wget -qO ~/.vimrc https://github.com/znichola/my-dotfiles/raw/refs/heads/main/.vimrc
-fi
-
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
 if confirm "INSTALL docker"; then
-    #wget -qO get-docker.sh https://get.docker.com
-    # sudo sh get-docker.sh
+    wget -qO get-docker.sh https://get.docker.com
+    sudo sh get-docker.sh
 
 # https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
     echo "MANAGE DOCKER AS NON ROOT USER"
