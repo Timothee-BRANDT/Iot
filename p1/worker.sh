@@ -2,6 +2,12 @@
 # Get the master node's IP from the arguments
 MASTER_IP=$1
 
+# Wait until the token file is available and non-empty
+while [ ! -s /vagrant/token ]; do
+    echo "Waiting for token file to be available..."
+    sleep 2
+done
+
 # Get the token from the shared folder
 TOKEN=$(cat /vagrant/token)
 
