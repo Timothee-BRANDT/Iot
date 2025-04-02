@@ -22,23 +22,6 @@ install_curl() {
   apt-get install -y curl
 }
 
-# Create a 1GB swap file if one doesn't exist
-# Important on low-memory systems (<2GB RAM) as K3s may fail to start or apply resources without it
-setup_swap() {
-  if [ ! -f /swapfile ]; then
-    echo "[+] Creating 1GB swap file..."
-
-    fallocate -l 1G /swapfile         # Allocate a 1GB file for swap space
-    chmod 600 /swapfile               # Restrict file permissions (read/write for root only)
-    mkswap /swapfile                  # Format the file as swap
-    swapon /swapfile                  # Enable the swap file
-    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab  # Make the swap file persistent on reboot
-
-  else
-    echo "[✓] Swap file already exists."
-  fi
-}
-
 # Install K3s (a lightweight Kubernetes distribution) with a custom node IP and Traefik disabled
 install_k3s() {
   echo "Installing K3s (node IP ${NODE_IP}, Traefik disabled)..."
@@ -112,7 +95,6 @@ update_hosts() {
 ###############################################################################
 
 install_curl    # Update package index and install curl
-# setup_swap      # Create swap file to prevent K3s from failing on low-memory systems
 install_k3s     # Install k3s with custom options
 config_kube     # Set permissions and export kubeconfig
 wait_k8s        # Wait for Kubernetes API to become ready
