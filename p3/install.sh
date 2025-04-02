@@ -30,7 +30,7 @@ if confirm "INSTALL docker"; then
     sudo usermod -aG docker $USER
     echo "... restart to premenently apply docker group to user"
     echo "... else for each new session run < newgrp docker >"
-    newgrp docker
+    # newgrp docker
 fi
 
 # https://k3d.io/stable/#install-current-latest-release
