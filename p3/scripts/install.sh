@@ -14,7 +14,7 @@ confirm() {
     esac
 }
 
-if confirm "INSTALL VIM & CONFIG"
+if confirm "INSTALL VIM & CONFIG"; then
     sudo apt install vim -y
     wget -qO ~/.vimrc https://github.com/znichola/my-dotfiles/raw/refs/heads/main/.vimrc
 fi
